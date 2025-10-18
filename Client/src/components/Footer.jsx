@@ -2,7 +2,15 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-dark text-light mt-5 py-3">
+    <footer
+      className="bg-dark text-light py-3"
+      style={{
+        bottom: 0,
+        left: 0,
+        width: "100%",
+        zIndex: 1000,
+      }}
+    >
       <div className="container text-center small">
         <p className="mb-1">
           © {new Date().getFullYear()} <strong>E-commerce</strong> — All Rights Reserved

@@ -19,5 +19,5 @@ uploadRouter.post(
   },
   UploadImageController
 ); 
-
+ 
 export default uploadRouter;

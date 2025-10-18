@@ -13,7 +13,7 @@ function Profile() {
   const user = useSelector((state) => state?.user?.userinfo);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(true); // السايد بار مفتوحة افتراضياً
+  const [open, setOpen] = useState(true); 
 
   const handleLogout = async () => {
     try {
@@ -38,9 +38,9 @@ function Profile() {
         {open ? <FaChevronLeft /> : <FaChevronRight />}
       </div>
 
-      {/* ✅ السايد بار */}
+
       <div className={`sidebar-wrapper ${open ? "open" : ""}`}>
-        <aside className="sidebar mt-4">
+        <aside className="sidebar mt-4 ms-3">
           {user && isAdmin(user.role) && (
             <>
               <NavLink to="product" className="sidebar-item mt-5">

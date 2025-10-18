@@ -41,7 +41,7 @@ function Updateuserdetails() {
     setLoading(true);
 
     try {
-      // لو فيه صورة جديدة
+
       if (file) {
         const imageData = new FormData();
         imageData.append("avatar", file);
@@ -50,18 +50,18 @@ function Updateuserdetails() {
           ...SummaryApi.uploadAvatar,
           data: imageData,
           withCredentials: true,
-          headers: { "Content-Type": "multipart/form-data" },
+     
         });
       }
 
-      // تحديث البيانات
+      
       await Axios({
         ...SummaryApi.updateUser,
         data: formData,
         withCredentials: true,
       });
 
-      // إعادة جلب البيانات المحدثة
+     
       const profileRes = await Axios({
         ...SummaryApi.userdetails,
         withCredentials: true,

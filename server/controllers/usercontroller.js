@@ -222,11 +222,9 @@ export const uploadavatar = async (req, res) => {
         error: true,
       });
     }
-    // console.log(req.file)
 
-    const image = req.file;
-    // console.log(image)
-    if (!image) {
+    const fileInput = req.file?.buffer;
+    if (!fileInput) {
       return res.status(400).json({
         message: "No image uploaded.",
         success: false,
@@ -234,11 +232,11 @@ export const uploadavatar = async (req, res) => {
       });
     }
 
-    const upload = await uploadImageClodinary(image);
+    const upload = await uploadImageClodinary(fileInput);
 
-    const updateUser = await User.findByIdAndUpdate( 
+    const updateUser = await User.findByIdAndUpdate(
       userId,
-      { avatar:upload.secure_url },
+      { avatar: upload.secure_url },
       { new: true }
     );
 
@@ -257,6 +255,7 @@ export const uploadavatar = async (req, res) => {
     });
   }
 };
+
 // /////////////////////////////////////////////////////////////////////////
 export const updatuserdetails = async (req, res) => {
   try {
