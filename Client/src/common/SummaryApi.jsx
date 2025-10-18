@@ -1,4 +1,4 @@
-export const dbUrl ="http://localhost:5000";
+export const dbUrl =import.meta.env.VITE_BACKEND_URL;
 
 
 export const SummaryApi = {
