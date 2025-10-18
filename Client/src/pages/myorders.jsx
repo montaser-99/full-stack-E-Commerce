@@ -12,8 +12,8 @@ function MyOrders() {
   const fetchOrders = async () => {
     try {
       const response = await Axios({
-        url:"/api/order/my-orders",
-        method:"get"
+        url: "/api/order/my-orders",
+        method: "get"
       });
 
       setOrders(response.data?.data || []);
@@ -24,7 +24,7 @@ function MyOrders() {
     }
   };
 
-  // ✅ Loading state
+
   if (loading)
     return (
       <div className="text-center mt-5">
@@ -33,7 +33,7 @@ function MyOrders() {
       </div>
     );
 
-  //  Empty orders
+
   if (!orders || orders.length === 0)
     return (
       <div className="text-center mt-5">
@@ -41,7 +41,7 @@ function MyOrders() {
       </div>
     );
 
-  //  Status badge styling
+
   const getStatusBadge = (status) => {
     switch (status?.toLowerCase()) {
       case "paid":
@@ -68,7 +68,7 @@ function MyOrders() {
           style={{ borderRadius: "12px" }}
         >
           <div className="card-body">
-            {/*  Order Header */}
+
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <h5 className="fw-bold mb-2 mb-md-0">
                 Order #{order.orderId || order._id.slice(-6).toUpperCase()}
@@ -76,7 +76,7 @@ function MyOrders() {
               {getStatusBadge(order.payment_status)}
             </div>
 
-            {/*  Order Summary */}
+
             <div className="mb-2">
               <strong>Total:</strong>{" "}
               <span className="text-success fw-bold">
@@ -96,30 +96,38 @@ function MyOrders() {
               </small>
             </div>
 
-            {/*  Product List */}
+
             <div className="row g-3">
               {order.products.map((item, idx) => (
                 <div key={idx} className="col-12 col-md-6">
                   <div
-                    className="border rounded p-2 bg-light d-flex align-items-center shadow-sm"
+                    className="border rounded p-2 bg-light d-flex align-items-center shadow-sm flex-wrap"
                     style={{
                       borderRadius: "10px",
                       transition: "transform 0.2s ease",
                     }}
                   >
+                   
                     <img
                       src={item.product_details.image[0]}
                       alt={item.product_details.name}
+                      className="flex-shrink-0"
                       style={{
-                        width: "80px",
-                        height: "80px",
+                        width: "70px",
+                        height: "70px",
                         objectFit: "cover",
                         borderRadius: "8px",
                         marginRight: "10px",
                       }}
                     />
-                    <div className="flex-grow-1">
-                      <p className="fw-semibold mb-1 text-truncate">
+
+
+                    <div className="flex-grow-1" style={{ minWidth: 0 }}>
+                      <p
+                        className="fw-semibold mb-1 text-truncate"
+                        style={{ fontSize: "0.9rem" }}
+                        title={item.product_details.name}
+                      >
                         {item.product_details.name}
                       </p>
                       <p className="text-muted small mb-0">
@@ -127,6 +135,7 @@ function MyOrders() {
                       </p>
                     </div>
                   </div>
+
                 </div>
               ))}
             </div>
