@@ -28,8 +28,15 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      // ✅ لو المستخدم مش داخل -> يروح Login
-      { path: "", element: <Navigate to="/login" replace /> },
+      {
+        path: "",
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
+      },
+
 
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
@@ -39,7 +46,7 @@ const router = createBrowserRouter([
       { path: "verify-otp", element: <Verifyotp /> },
       { path: "set-password", element: <Setpassword /> },
 
-      // 🧩 الصفحات المحمية (لازم المستخدم يكون داخل)
+
       {
         path: "profile",
         element: (
@@ -53,7 +60,7 @@ const router = createBrowserRouter([
           { path: "my-address", element: <Myadddress /> },
           { path: "my-orders", element: <Myorders /> },
 
-          // 🧠 الصفحات الخاصة بالأدمن فقط
+         
           {
             path: "category",
             element: (
@@ -89,7 +96,7 @@ const router = createBrowserRouter([
         ],
       },
 
-      // 🛍 صفحات المنتجات
+
       {
         path: "product/:category/:subCategory",
         element: <ProductListPage />,
