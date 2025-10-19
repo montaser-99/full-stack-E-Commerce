@@ -3,13 +3,13 @@ import React from "react";
 function Footer() {
   return (
     <footer
-      className="bg-dark text-light py-3 w-100 text-center small"
+      className="bg-dark text-light py-3 text-center small"
       style={{
         position: "fixed",
-        bottom: 0,
-        left: 0,
+        bottom: "0",
+        left: "0",
         width: "100%",
-        zIndex: 1000,
+        zIndex: "9999",
       }}
     >
       <div className="container">
