@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 
 const ProtectedRoute = ({ children }) => {
   const user = useSelector((state) => state?.user?.userinfo);
+    const storedUser = localStorage.getItem("userInfo");
 
 
-  if (!user) {
+  if (!user||!storedUser) {
     return <Navigate to="/login" replace />;
   }
 

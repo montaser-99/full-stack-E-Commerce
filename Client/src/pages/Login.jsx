@@ -45,6 +45,8 @@ function Login() {
       if (response.data.success) {
         toast.success(response.data.message);
         dispatch(getuserinfo(response.data.user));
+        localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+
         setData({ email: "", password: "" });
         navigate("/");
       }

@@ -43,17 +43,27 @@ function App() {
         }
     }
 
-    const fetchUser = async () => {
-        try {
-            const userData = await fetchuserDetails()
-            if (userData?.data?.user) {
-                dispatch(getuserinfo(userData.data.user));
-            }
-            console.log(" userData from API:", userData);
-        } catch (err) {
-            console.log(err)
-        }
+ const fetchUser = async () => {
+  try {
+    const userData = await fetchuserDetails();
+
+    if (userData?.data?.user) {
+      dispatch(getuserinfo(userData.data.user));
+    } else {
+
+      localStorage.removeItem("userInfo");
     }
+    console.log(" userData from API:", userData);
+  } catch (err) {
+    console.log(err);
+  
+    if (err.response?.status === 401) {
+      localStorage.removeItem("userInfo");
+      window.location.href = "/login";
+    }
+  }
+};
+
     const fetchAddress = async () => {
         try {
             const response = await Axios({
