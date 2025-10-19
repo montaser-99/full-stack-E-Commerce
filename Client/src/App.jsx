@@ -90,7 +90,7 @@ function App() {
         <>
         <ScrollToTop/>
             <Header />
-            <main className='min-h-[78vh] flex-1'>
+           <main className="flex-1" style={{ minHeight: "78vh" }}>
                 <Outlet />
             </main>
             <Footer/>
