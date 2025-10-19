@@ -12,6 +12,6 @@ productRouter.post("/get-product-bycategory-and-subcategory",GetProductByCategor
 productRouter.post("/get-product-details",GetproductbyId)
 productRouter.put("/update",auth, authorizeRoles("Admin"),UpdateProduct)
 productRouter.delete("/delete",auth, authorizeRoles("Admin"),DeleteProduct)
-
+ 
 
 export default productRouter

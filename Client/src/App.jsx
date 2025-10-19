@@ -10,10 +10,10 @@ import { setAllsubcategories } from './store/productSlice';
 import { Axios } from './Utils/Axios';
 import { SummaryApi } from './common/SummaryApi';
 import { fetchCartItem } from './store/cartSlice'
-// import { handleAddAddress } from './store/addressSlice';
+import ScrollToTop from './components/ScrolTop'
 import { setAllAddresses } from './store/addressSlice';
 import Footer from './components/Footer'
-import './App.css';
+
 
 
 function App() {
@@ -78,8 +78,9 @@ function App() {
 
     return (
         <>
+        <ScrollToTop/>
             <Header />
-            <main className='min-h-[78vh]'>
+            <main className='min-h-[78vh] flex-1'>
                 <Outlet />
             </main>
             <Footer/>

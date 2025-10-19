@@ -10,10 +10,13 @@ import router from './routes/index.jsx'
 import store from './store/store.js'
 import { Provider } from 'react-redux'
 
+
 createRoot(document.getElementById('root')).render(
     <>
         <Provider store={store}>
+           
             <RouterProvider router={router} />
+\
             <Toaster position="top-center" reverseOrder={false} />
         </Provider>
 

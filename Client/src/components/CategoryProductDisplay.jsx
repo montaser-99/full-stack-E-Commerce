@@ -5,7 +5,7 @@ import Cardproduct from "./Cardproduct";
 import CustomSlider from "./Slider";
 import { Link } from "react-router-dom";
 
-function CategoryProductDisplay({ id, name, useSlider = true }) {
+function CategoryProductDisplay({ id, name, useSlider = true, Redirectproductlistpage }) {
   const [data, setData] = useState([]);
 
   const fetchproductsmatch = async () => {
@@ -33,7 +33,7 @@ function CategoryProductDisplay({ id, name, useSlider = true }) {
 
   return (
     <div className="mt-5 mb-4 container">
-    
+     
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2
           className="fw-bold"
@@ -48,17 +48,16 @@ function CategoryProductDisplay({ id, name, useSlider = true }) {
           {name}
         </h2>
 
-        {data.length > 6 && (
-          <Link
-            to={`/category/${id}`}
-            className="text-success fw-semibold text-decoration-none"
-          >
-            View All →
-          </Link>
-        )}
+       
+        <button
+          className="btn btn-outline-success fw-semibold"
+          onClick={() => Redirectproductlistpage(id, name)}
+        >
+          View All
+        </button>
       </div>
 
-
+ 
       {useSlider ? (
         <CustomSlider data={data} slidesToShow={5} autoplay={false} />
       ) : (

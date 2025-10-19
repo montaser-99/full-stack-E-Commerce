@@ -96,6 +96,7 @@ function Home() {
                 id={cat._id}
                 name={cat.name}
                 key={index}
+                Redirectproductlistpage={Redirectproductlistpage}
               />
             ))
           ) : (

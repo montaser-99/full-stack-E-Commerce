@@ -4,14 +4,14 @@ import EditSubcategoryModel from '../components/EditSubcategorymodel';
 import { Axios } from '../Utils/Axios';
 import toast from 'react-hot-toast';
 import UploadSubcategorymodel from '../components/uploadsubcategorymode';
-
+import { useSelector } from 'react-redux';
 function SubCategory() {
   const [uploadSubcategorymodel, setUploadSubcategorymodel] = useState(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [subcategoryToEdit, setSubcategoryToEdit] = useState(null);
 
-
+ const Allcateories = useSelector(state => state.product.Allcategories);
   const handleEdit = (subcategory) => {
     setSubcategoryToEdit(subcategory);
     setEditModalOpen(true);
@@ -55,7 +55,7 @@ function SubCategory() {
           show={editModalOpen}
           onClose={() => setEditModalOpen(false)}
           subcategory={subcategoryToEdit}
-          categories={categories}
+          categories={Allcateories}
           onUpdate={handleUpdate}
         />
       )}

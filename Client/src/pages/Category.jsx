@@ -69,7 +69,7 @@ function Category() {
         onClick={handleAddCategory}
       >
         <i className="bi bi-plus-lg"></i>
-        <span className="d-none d-sm-inline">Add Category</span>
+        <span className="">Add Category</span>
       </button>
     </div>
 
