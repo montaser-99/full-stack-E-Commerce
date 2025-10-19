@@ -7,7 +7,7 @@ const userRouter=Router()
 
 
 userRouter.post('/register',Registeruser)
-userRouter.post('/verify-email',verifyEmailcontroller)
+userRouter.get('/verify-email',verifyEmailcontroller)
 userRouter.post('/login',Logincontroller)
 userRouter.post('/logout',auth,Logoutcontroller)
 userRouter.put('/upload-avatar',auth,upload.single('avatar'),uploadavatar)
