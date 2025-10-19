@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
     const storedUser = localStorage.getItem("userInfo");
 
 
-  if (!user||!storedUser) {
+  if (!storedUser) {
     return <Navigate to="/login" replace />;
   }
 
