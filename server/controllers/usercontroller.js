@@ -39,7 +39,7 @@ export const Registeruser = async (req, res) => {
     const newuser = new User(user_data);
     const saveduser = await newuser.save();
 
-    const VerifyEmailUrl = `https://full-stack-e-commerce-seven.vercel.app/verify-email?code=${saveduser?._id}`;
+    const VerifyEmailUrl = `https://full-stack-e-commerce-seven.vercel.app/api/verify-email?code=${saveduser?._id}`;
 
     const verifyEmail = await sendEmail({
       sendTo: email,
@@ -68,8 +68,7 @@ export const Registeruser = async (req, res) => {
 // ///////////
 export const verifyEmailcontroller = async (req, res) => {
   try {
-
-    const { code } = req.body;
+    const { code } = req.query; 
     const updatedUser = await User.findByIdAndUpdate(
       code,
       { verify_email: true },
@@ -77,26 +76,16 @@ export const verifyEmailcontroller = async (req, res) => {
     );
 
     if (!updatedUser) {
-      return res.status(404).json({
-        message: "User not found",
-        success: false,
-        error: true,
-      });
+      return res.status(404).send("User not found");
     }
 
-    return res.json({
-      message: "Verify email done",
-      success: true,
-      error: false,
-    });
+   
+    return res.redirect("https://full-stack-e-commerce-seven.vercel.app/login");
   } catch (error) {
-    return res.status(500).json({
-      message: error.message || error,
-      error: true,
-      success: false,
-    });
+    return res.status(500).send("Something went wrong");
   }
 };
+
 /////////////////////////////////////////////////////////////////////////////
 export const Logincontroller = async (req, res) => {
   try {
@@ -124,7 +113,7 @@ export const Logincontroller = async (req, res) => {
       return res
         .status(403)
         .json({
-          message: "Please verify your email first",
+          message: "Please verify your email first.check your email",
           success: false,
           error: true,
         });
