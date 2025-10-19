@@ -39,7 +39,7 @@ export const Registeruser = async (req, res) => {
     const newuser = new User(user_data);
     const saveduser = await newuser.save();
 
-    const VerifyEmailUrl = `full-stack-e-commerce-seven.vercel.app/verify-email?code=${saveduser?._id}`;
+    const VerifyEmailUrl = `https://full-stack-e-commerce-seven.vercel.app/verify-email?code=${saveduser?._id}`;
 
     const verifyEmail = await sendEmail({
       sendTo: email,
