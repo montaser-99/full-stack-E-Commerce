@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import App from "../App.jsx";
 import Home from "../pages/Home.jsx";
 import Register from "../pages/Register.jsx";
 import Login from "../pages/Login.jsx";
@@ -7,7 +8,6 @@ import VerifyEmail from "../pages/Verifyemail.jsx";
 import Forgotpassword from "../pages/Forgotpassword.jsx";
 import Verifyotp from "../pages/verifyotp.jsx";
 import Setpassword from "../pages/Setpassword.jsx";
-import App from "../App.jsx";
 import Profile from "../pages/profile.jsx";
 import Myprofile from "../pages/myprofile.jsx";
 import Myadddress from "../pages/myadddress.jsx";
@@ -20,24 +20,17 @@ import ProductListPage from "../pages/ProductListPage.jsx";
 import ProductDisplayPage from "../pages/ProductDisplayPage.jsx";
 import Cart from "../pages/Cart.jsx";
 import Checkout from "../pages/Checkout.jsx";
+import Success from "../pages/Success.jsx";
+import Cancel from "../pages/Cancel.jsx";
 import AdminPermission from "../components/Adminpermission.jsx";
 import ProtectedRoute from "../components/Protectroute.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <App />, // App هو ال layout الأساسي
     children: [
-      {
-        path: "",
-        element: (
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        ),
-      },
-
-
+      { path: "", element: <ProtectedRoute><Home /></ProtectedRoute> },
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
       { path: "search", element: <Searchpage /> },
@@ -45,74 +38,33 @@ const router = createBrowserRouter([
       { path: "forgot-password", element: <Forgotpassword /> },
       { path: "verify-otp", element: <Verifyotp /> },
       { path: "set-password", element: <Setpassword /> },
+      { path: "success", element: <Success /> },
+      { path: "cancel", element: <Cancel /> },
 
-
+      // Profile routes
       {
         path: "profile",
-        element: (
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute><Profile /></ProtectedRoute>,
         children: [
           { index: true, element: <Navigate to="my-profile" replace /> },
           { path: "my-profile", element: <Myprofile /> },
           { path: "my-address", element: <Myadddress /> },
           { path: "my-orders", element: <Myorders /> },
 
-         
-          {
-            path: "category",
-            element: (
-              <AdminPermission>
-                <Category />
-              </AdminPermission>
-            ),
-          },
-          {
-            path: "sub-category",
-            element: (
-              <AdminPermission>
-                <SubCategory />
-              </AdminPermission>
-            ),
-          },
-          {
-            path: "product",
-            element: (
-              <AdminPermission>
-                <ProductAdmin />
-              </AdminPermission>
-            ),
-          },
-          {
-            path: "upload-product",
-            element: (
-              <AdminPermission>
-                <UploadProduct />
-              </AdminPermission>
-            ),
-          },
+          { path: "category", element: <AdminPermission><Category /></AdminPermission> },
+          { path: "sub-category", element: <AdminPermission><SubCategory /></AdminPermission> },
+          { path: "product", element: <AdminPermission><ProductAdmin /></AdminPermission> },
+          { path: "upload-product", element: <AdminPermission><UploadProduct /></AdminPermission> },
         ],
       },
 
+      // Product routes
+      { path: "product/:category/:subCategory", element: <ProductListPage /> },
+      { path: "product-details/:productId", element: <ProductDisplayPage /> },
 
-      {
-        path: "product/:category/:subCategory",
-        element: <ProductListPage />,
-      },
-      {
-        path: "product-details/:productId",
-        element: <ProductDisplayPage />,
-      },
-      {
-        path: "cart",
-        element: <ProtectedRoute><Cart /></ProtectedRoute>,
-      },
-      {
-        path: "checkout",
-        element: <ProtectedRoute><Checkout /></ProtectedRoute>,
-      },
+      // Cart & Checkout
+      { path: "cart", element: <ProtectedRoute><Cart /></ProtectedRoute> },
+      { path: "checkout", element: <ProtectedRoute><Checkout /></ProtectedRoute> },
     ],
   },
 ]);

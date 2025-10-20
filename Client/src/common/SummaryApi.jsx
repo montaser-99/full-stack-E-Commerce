@@ -1,4 +1,4 @@
-export const dbUrl = import.meta.env.VITE_BACKEND_URL;
+export const dbUrl =import.meta.env.VITE_BACKEND_URL;
 
 
 

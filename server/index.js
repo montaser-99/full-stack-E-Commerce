@@ -28,14 +28,14 @@ app.use(cors({
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(express.json());
+
 
 app.post(
   "/webhook",
   express.raw({ type: "application/json" }),
   webhookStripe
 );
-
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("API is running...");
@@ -54,6 +54,6 @@ Dbconnection();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(` Server is running on http://localhost:${PORT}`);
 });
  

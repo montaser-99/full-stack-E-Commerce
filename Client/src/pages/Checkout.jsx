@@ -26,6 +26,7 @@ function Checkout() {
     return acc + discountedPrice * item.quantity;
   }, 0);
 
+  // ------------------- Cash on Delivery -------------------
   const handlePlaceOrder = async () => {
     if (!selectedAddress) return toast.error("Please select an address");
 
@@ -45,8 +46,6 @@ function Checkout() {
         withCredentials: true,
       });
 
-      console.log(res);
-
       if (res.data.success) {
         toast.success("Order placed successfully");
         dispatch(fetchCartItem());
@@ -60,10 +59,12 @@ function Checkout() {
     }
   };
 
+  // ------------------- Online Payment -------------------
   const handleOnlinePayment = async () => {
     if (!selectedAddress) return toast.error("Please select an address");
 
     const items = cartList.map((item) => ({
+      productId: item.productId._id, // مهم جدا
       product_details: {
         name: item.productId.name,
         image: item.productId.image[0],
@@ -77,10 +78,11 @@ function Checkout() {
         url: "/api/order/online-payment",
         method: "post",
         data: { cartItems: items, addressId: selectedAddress._id },
+        withCredentials: true,
       });
 
       if (res.data.url) {
-        window.location.href = res.data.url;
+        window.location.href = res.data.url; 
       } else {
         toast.error("Failed to redirect to payment");
       }
