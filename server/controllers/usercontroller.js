@@ -80,7 +80,7 @@ export const verifyEmailcontroller = async (req, res) => {
     }
 
    
-    return res.redirect("https://full-stack-e-commerce-seven.vercel.app/login");
+    return res.redirect("https://full-stack-e-commerce-seven.vercel.app/");
   } catch (error) {
     return res.status(500).send("Something went wrong");
   }
