@@ -33,7 +33,7 @@ function CategoryProductDisplay({ id, name, useSlider = true, Redirectproductlis
 
   return (
     <div className="mt-5 mb-4 container">
-     
+
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2
           className="fw-bold"
@@ -48,16 +48,20 @@ function CategoryProductDisplay({ id, name, useSlider = true, Redirectproductlis
           {name}
         </h2>
 
-       
+
         <button
-          className="btn btn-outline-success fw-semibold"
+          className="btn btn-outline-success fw-semibold text-nowrap px-3 py-1"
+          style={{
+            fontSize: "0.9rem",
+          }}
           onClick={() => Redirectproductlistpage(id, name)}
         >
           View All
         </button>
+
       </div>
 
- 
+
       {useSlider ? (
         <CustomSlider data={data} slidesToShow={5} autoplay={false} />
       ) : (
