@@ -26,8 +26,8 @@ html, body, #root {
   min-height: 100vh;
 }
 
-main {
-  flex: 1;
+.main-content {
+  flex: 1; 
 }
 
 

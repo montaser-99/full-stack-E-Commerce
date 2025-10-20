@@ -2,8 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer
-      className="bg-dark text-light py-3 text-center small" >
+    <footer className="bg-dark text-light py-3 text-center small">
       <div className="container">
         <p className="mb-1">
           © {new Date().getFullYear()} <strong>E-commerce</strong> — All Rights Reserved
