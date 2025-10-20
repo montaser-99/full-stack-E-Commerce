@@ -3,15 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <footer
-      className="bg-dark text-light py-3 text-center small"
-      style={{
-        position: "fixed",
-        bottom: "0",
-        left: "0",
-        width: "100%",
-        zIndex: "9999",
-      }}
-    >
+      className="bg-dark text-light py-3 text-center small" >
       <div className="container">
         <p className="mb-1">
           © {new Date().getFullYear()} <strong>E-commerce</strong> — All Rights Reserved
